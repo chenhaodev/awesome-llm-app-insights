@@ -1,0 +1,1 @@
+This repo offers insights and advice on using Large Language Models (LLMs) for daily tech activities and projects. It's designed for anyone interested in coding, automation, or boosting creativity and productivity with LLMs.
