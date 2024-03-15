@@ -9,3 +9,8 @@ This repo offers insights and advice on using Large Language Models (LLMs) for d
 ### ollama-chatpdf
 [ollama-chatpdf](https://github.com/chenhaodev/ollama-chatpdf/) offers a chat functionality integrated with documents, hosted entirely locally. It utilizes Voy for vector storage within the browser through WebAssembly; deploys a local large language model via Ollama for the web app; leverages LangChain.js for managing model interactions and data retrieval; and uses Transformers.js to facilitate the running of Nomic embeddings directly in the browser.
 
+### whisper.cpp 
+[whisper.cpp](https://github.com/chenhaodev/awesome-llm-app-insights/tree/main/examples/whisper.cpp) a Python CLI/application that utilizes whisper.cpp for converting speech to text.
+
+### rag-langchain
+[rag-langchain](https://github.com/chenhaodev/awesome-llm-app-insights/tree/main/examples/rag-langchain) is a Python CLI/application designed to employ ollama/offline-LLM and retrieve documents in paper/pdf, html, txt formats for enhanced human interaction. 
