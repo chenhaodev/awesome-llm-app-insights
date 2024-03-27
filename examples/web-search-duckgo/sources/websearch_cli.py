@@ -39,17 +39,14 @@ class WebAcadSearch:
         name = url.replace('https://', '').replace('/', '_').replace(':', '_').replace('?', '_')
         return f"{name}.txt"
 
-    def fetch_content_and_save(self, url, search_pattern, is_pubmed=False):
+    def fetch_content_and_save(self, url, search_pattern):
         try:
             driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=self.chrome_options)
             driver.get(url)
             try:
                 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, search_pattern)))
-                if is_pubmed:
-                    abstract_div = driver.find_element(By.CSS_SELECTOR, "div.abstract-content.selected#eng-abstract")
-                    content = abstract_div.text.strip()
-                else:
-                    content = driver.find_element(By.CSS_SELECTOR, search_pattern).text.strip()
+                abstract_div = driver.find_element(By.CSS_SELECTOR, search_pattern)
+                content = abstract_div.text.strip()
 
                 filename = self.url_to_filename(url)
                 with open(filename, 'w', encoding='utf-8') as file:
@@ -63,8 +60,8 @@ class WebAcadSearch:
             print(f"Error fetching {url}: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description='Search PubMed and UpToDate using DuckDuckGo.')
-    parser.add_argument('-t', '--type', choices=['pubmed', 'uptodate'], required=True, help='Type of search: pubmed or uptodate')
+    parser = argparse.ArgumentParser(description='Search PubMed, UpToDate, and Semantic Scholar using DuckDuckGo.')
+    parser.add_argument('-t', '--type', choices=['pubmed', 'uptodate', 'semantic_scholar'], required=True, help='Type of search: pubmed, uptodate, or semantic_scholar')
     parser.add_argument('-q', '--query', required=True, help='Search query')
 
     args = parser.parse_args()
@@ -75,12 +72,17 @@ def main():
         results = web_acad_search.search(args.query, "https://pubmed.ncbi.nlm.nih.gov")
         for result in results:
             print(result)
-            web_acad_search.fetch_content_and_save(result['href'], search_pattern=".abstract-content.selected#eng-abstract", is_pubmed=True)
+            web_acad_search.fetch_content_and_save(result['href'], search_pattern=".abstract-content.selected#eng-abstract")
     elif args.type == 'uptodate':
         results = web_acad_search.search(args.query, "https://doctorabad.com/uptodate")
         for result in results:
             print(result)
             web_acad_search.fetch_content_and_save(result['href'], search_pattern="div#topicText")
+    elif args.type == 'semantic_scholar':
+        results = web_acad_search.search(args.query, "https://www.semanticscholar.org")
+        for result in results:
+            print(result)
+            web_acad_search.fetch_content_and_save(result['href'], search_pattern=".tldr-abstract-replacement.paper-detail-page__tldr-abstract")
 
 if __name__ == '__main__':
     main()
