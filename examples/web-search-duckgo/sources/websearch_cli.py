@@ -1,3 +1,13 @@
+'''
+# dependency
+pip install duckduckgo-search beautifulsoup4 requests selenium webdriver-manager
+
+# on linux
+apt-get install libxss1 libappindicator1 libindicator7
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+apt install ./google-chrome*.deb
+'''
+
 import argparse
 from duckduckgo_search import DDGS
 from bs4 import BeautifulSoup
