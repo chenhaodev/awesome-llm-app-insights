@@ -3,8 +3,9 @@ FROM python:3.10 as base
 
 # Set model
 ENV MODEL=Qwen/Qwen1.5-14B-Chat-GGUF
-ENV QUANT=Q5_K_M
-ENV CHAT_TEMPLATE=llama-2
+ENV QUANT=Q4_K_M
+ENV CHAT_TEMPLATE=chatml
+#https://github.com/abetlen/llama-cpp-python/blob/main/llama_cpp/llama_chat_format.py
 
 # Set the working directory
 WORKDIR /app
