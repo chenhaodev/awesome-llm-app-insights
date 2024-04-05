@@ -204,21 +204,9 @@ class AudioTranscriber:
 
     @staticmethod
     def download_model():
-        print("To download the model, follow these steps:")
-        print("1. Clone OpenAI whisper and whisper.cpp:")
-        print("   git clone https://github.com/openai/whisper")
-        print("   git clone https://github.com/ggerganov/whisper.cpp")
-        print("2. Navigate to the models directory:")
-        print("   cd whisper.cpp/models")
-        print("3. Clone the model repositories:")
-        print("   git clone https://huggingface.co/distil-whisper/distil-medium.en")
-        print("   git clone https://huggingface.co/distil-whisper/distil-large-v2")
-        print("4. Convert the models to ggml format:")
-        print("   python3 ./convert-h5-to-ggml.py ./distil-medium.en/ ../../whisper .")
-        print("   mv ggml-model.bin ggml-medium.en-distil.bin")
-        print("   python3 ./convert-h5-to-ggml.py ./distil-large-v2/ ../../whisper .")
-        print("   mv ggml-model.bin ggml-large-v2-distil.bin")
-        print("After completing these steps, you will have the models in the required format.")
+        print("git clone https://github.com/openai/whisper; git clone https://github.com/ggerganov/whisper.cpp")
+        print("cd whisper.cpp/models; git clone https://huggingface.co/distil-whisper/distil-medium.en")
+        print("python3 ./convert-h5-to-ggml.py ./distil-medium.en/ ../../whisper . ; mv ggml-model.bin ggml-medium.en-distil.bin")
 
     def process_audio(self, audio_file_path):
         # Check if the model file exists
