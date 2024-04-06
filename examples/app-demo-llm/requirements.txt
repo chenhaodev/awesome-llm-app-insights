@@ -1,2 +1,2 @@
-llama-cpp-python
+llama-cpp-python==0.1.80 #GGUF v2
 gradio
